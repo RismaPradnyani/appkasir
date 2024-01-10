@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">User</h1>
+          <h1 class="m-0">Produk</h1>
         </div>
         <!-- /.col -->
         <div class="col-sm-6">
@@ -13,7 +13,7 @@
             <li class="breadcrumb-item">
               <a href="#">Data Utama</a>
             </li>
-            <li class="breadcrumb-item active">User</li>
+            <li class="breadcrumb-item active">Produk</li>
           </ol>
         </div>
         <!-- /.col -->
@@ -28,72 +28,63 @@
   <section class="content">
     <div class="container-fluid">
       <div class="card-header">
-        <h5>Data User</h5>
+        <h5>Data Produk</h5>
       </div>
       <div class="card-body">
         <table id="example1" class="table table-hover">
           <thead class="bg-purple">
             <th>ID</th>
-            <th>Nama</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Hak Akses</th>
+            <th>Nama Produk</th>
+            <th>Harga</th>
+            <th>Stok</th>
             <th>Aksi</th>
           </thead>
           <?php
-          $sql = "SELECT * FROM user";
+          $sql = "SELECT * FROM produk";
           $query = mysqli_query($koneksi, $sql);
           while ($kolom = mysqli_fetch_array($query)) {
           ?>
             <tr>
-              <td><?= $kolom['id_user']; ?></td>
-              <td><?= $kolom['nama']; ?></td>
-              <td><?= $kolom['username']; ?></td>
-              <td><?= $kolom['password']; ?></td>
-              <td><?= $kolom['hak_akses']; ?></td>
-
+              <td><?= $kolom['ProdukID']; ?></td>
+              <td><?= $kolom['NamaProduk']; ?></td>
+              <td><?= number_format($kolom['Harga']);  ?></td>
+              <td><?= $kolom['Stok']; ?></td>
               <td>
                 <!-- tombol edit -->
-                <a href="#" data-toggle="modal" data-target="#modalUbah<?= $kolom['id_user']; ?>">
+                <a href="#" data-toggle="modal" data-target="#modalUbah<?= $kolom['ProdukID']; ?>">
                   <i class="fas fa-edit" style="color: purple;"></i>
                 </a>
                 &nbsp;
                 <!-- Tombol hapus -->
-                <a onclick="return confirm('Yakin akan menghapus data ini?')" href="aksi/user.php?aksi=hapus&id_user=<?= $kolom['id_user']; ?>">
+                <a onclick="return confirm('Yakin akan menghapus data ini?')" href="aksi/produk.php?aksi=hapus&ProdukID=<?= $kolom['ProdukID']; ?>">
                   <i class="fas fa-trash" style="color: purple;"></i></a>
               </td>
             </tr>
 
             <!-- Modal ubah periode -->
-            <div class="modal fade" id="modalUbah<?= $kolom['id_user']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalUbah<?= $kolom['ProdukID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="aksi/user.php" method="post">
+                    <form action="aksi/produk.php" method="post">
                       <input type="hidden" name="aksi" value="ubah">
-                      <input type="hidden" name="id_user" value="<?= $kolom['id_user']; ?>">
+                      <input type="hidden" name="ProdukID" value="<?= $kolom['ProdukID']; ?>">
 
                       <label for="nama">Nama</label>
-                      <input type="text" name="nama" value="<?= $kolom['nama']; ?>" class="form-control" required="required">
+                      <input type="text" name="NamaProduk" value="<?= $kolom['NamaProduk']; ?>" class="form-control" required="required">
 
-                      <label for="username" class="mt-3">Username</label>
-                      <input type="text" name="username" value="<?= $kolom['username']; ?>" class="form-control" required="required">
+                      <label for="Harga" class="mt-3">Harga</label>
+                      <input type="text" name="Harga" value="<?= number_format($kolom['Harga']); ?>" class="form-control" required="required">
                       <br>
-                      <label for="password">Password</label>
-                      <input type="password" name="password" value="<?= $kolom['password']; ?>" class="form-control" required="required">
+                      <label for="Stok">Stok</label>
+                      <input type="Stok" name="Stok" value="<?= $kolom['Stok']; ?>" class="form-control" required="required">
                       <br>
-                      <label for="hak_akses">Hak Akses</label>
-                      <select class="form-control" id="hak_akses" name="hak_akses" required>
-                        <option value="<?= $kolom['hak_akses'] ?>"><?= $kolom['hak_akses'] ?></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                      </select>
                       <button type="submit" class="btn btn-block bg-purple">
                         <i class="fas fa-save"></i>
                         Simpan
@@ -114,7 +105,7 @@
 
         <button type="button" class="btn bg-purple btn-block mt-3" data-toggle="modal" data-target="#modaltambah">
           <i class="fas fa-plus"></i>
-          Tambah User</button>
+          Tambah Produk</button>
       </div>
     </div>
     <!-- /.container-fluid -->
@@ -128,28 +119,21 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="aksi/user.php" method="post">
+        <form action="aksi/produk.php" method="post">
           <input type="hidden" name="aksi" value="tambah">
-          <label for="nama">Nama</label>
-          <input type="text" name="nama" class="form-control" required="required">
-
-          <label for="username" class="mt-3">Username</label>
-          <input type="text" name="username" class="form-control" required="required">
+          <label for="nama">Nama Produk</label>
+          <input type="text" name="NamaProduk" class="form-control" required="required" placeholder="Masukkan Nama Produk">
+          <label for="harga" class="mt-3">Harga</label>
+          <input type="text" name="Harga" class="form-control" required="required" placeholder="Masukkan Harga Produk">
           <br>
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" required="required">
-          <br>
-          <label for="hak_akses">Hak Akses</label>
-          <select class="form-control" id="hak_akses" name="hak_akses" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
+          <label for="stok">Stok</label>
+          <input type="text" name="Stok" class="form-control" required="required" placeholder="Masukkan Stok Produk">
           <br>
           <button type="submit" class="btn btn-block bg-purple">
             <i class="fas fa-save"></i>
