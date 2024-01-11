@@ -32,7 +32,7 @@
       </div>
       <div class="card-body">
         <table id="example1" class="table table-hover">
-          <thead class="bg-purple">
+          <thead class="bg-dark">
             <th>ID</th>
             <th>Nama</th>
             <th>Username</th>
@@ -55,12 +55,12 @@
               <td>
                 <!-- tombol edit -->
                 <a href="#" data-toggle="modal" data-target="#modalUbah<?= $kolom['id_user']; ?>">
-                  <i class="fas fa-edit" style="color: purple;"></i>
+                  <i class="fas fa-edit" style="color: primary;"></i>
                 </a>
                 &nbsp;
                 <!-- Tombol hapus -->
                 <a onclick="return confirm('Yakin akan menghapus data ini?')" href="aksi/user.php?aksi=hapus&id_user=<?= $kolom['id_user']; ?>">
-                  <i class="fas fa-trash" style="color: purple;"></i></a>
+                  <i class="fas fa-trash" style="color: red;"></i></a>
               </td>
             </tr>
 
@@ -94,7 +94,7 @@
                         <option value="1">1</option>
                         <option value="2">2</option>
                       </select>
-                      <button type="submit" class="btn btn-block bg-purple">
+                      <button type="submit" class="btn btn-block bg-dark">
                         <i class="fas fa-save"></i>
                         Simpan
                       </button>
@@ -112,7 +112,7 @@
           ?>
         </table>
 
-        <button type="button" class="btn bg-purple btn-block mt-3" data-toggle="modal" data-target="#modaltambah">
+        <button type="button" class="btn bg-dark btn-block mt-3" data-toggle="modal" data-target="#modaltambah">
           <i class="fas fa-plus"></i>
           Tambah User</button>
       </div>
@@ -151,7 +151,7 @@
             <option value="2">2</option>
           </select>
           <br>
-          <button type="submit" class="btn btn-block bg-purple">
+          <button type="submit" class="btn btn-block bg-dark">
             <i class="fas fa-save"></i>
             Simpan
           </button>

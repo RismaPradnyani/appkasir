@@ -32,8 +32,9 @@
       </div>
       <div class="card-body">
         <table id="example1" class="table table-hover">
-          <thead class="bg-purple">
+          <thead class="bg-dark">
             <th>ID</th>
+            <th>Barcode</th>
             <th>Nama Produk</th>
             <th>Harga</th>
             <th>Stok</th>
@@ -46,18 +47,19 @@
           ?>
             <tr>
               <td><?= $kolom['ProdukID']; ?></td>
+              <td><?= $kolom['Barcode']; ?></td>
               <td><?= $kolom['NamaProduk']; ?></td>
               <td><?= number_format($kolom['Harga']);  ?></td>
               <td><?= $kolom['Stok']; ?></td>
               <td>
                 <!-- tombol edit -->
                 <a href="#" data-toggle="modal" data-target="#modalUbah<?= $kolom['ProdukID']; ?>">
-                  <i class="fas fa-edit" style="color: purple;"></i>
+                  <i class="fas fa-edit" style="color: primary;"></i>
                 </a>
                 &nbsp;
                 <!-- Tombol hapus -->
                 <a onclick="return confirm('Yakin akan menghapus data ini?')" href="aksi/produk.php?aksi=hapus&ProdukID=<?= $kolom['ProdukID']; ?>">
-                  <i class="fas fa-trash" style="color: purple;"></i></a>
+                  <i class="fas fa-trash" style="color: red;"></i></a>
               </td>
             </tr>
 
@@ -76,6 +78,9 @@
                       <input type="hidden" name="aksi" value="ubah">
                       <input type="hidden" name="ProdukID" value="<?= $kolom['ProdukID']; ?>">
 
+                      <label for="Barcode">Barcode</label>
+                      <input type="text" name="Barcode" value="<?= $kolom['Barcode']; ?>" class="form-control" required="required">
+
                       <label for="nama">Nama</label>
                       <input type="text" name="NamaProduk" value="<?= $kolom['NamaProduk']; ?>" class="form-control" required="required">
 
@@ -85,7 +90,7 @@
                       <label for="Stok">Stok</label>
                       <input type="Stok" name="Stok" value="<?= $kolom['Stok']; ?>" class="form-control" required="required">
                       <br>
-                      <button type="submit" class="btn btn-block bg-purple">
+                      <button type="submit" class="btn btn-block bg-dark">
                         <i class="fas fa-save"></i>
                         Simpan
                       </button>
@@ -103,7 +108,7 @@
           ?>
         </table>
 
-        <button type="button" class="btn bg-purple btn-block mt-3" data-toggle="modal" data-target="#modaltambah">
+        <button type="button" class="btn bg-dark btn-block mt-3" data-toggle="modal" data-target="#modaltambah">
           <i class="fas fa-plus"></i>
           Tambah Produk</button>
       </div>
@@ -127,6 +132,8 @@
       <div class="modal-body">
         <form action="aksi/produk.php" method="post">
           <input type="hidden" name="aksi" value="tambah">
+          <label for="Barcode">Barcode</label>
+          <input type="text" name="Barcode" class="form-control" required="required" placeholder="Masukkan Barcode Produk">
           <label for="nama">Nama Produk</label>
           <input type="text" name="NamaProduk" class="form-control" required="required" placeholder="Masukkan Nama Produk">
           <label for="harga" class="mt-3">Harga</label>
@@ -135,7 +142,7 @@
           <label for="stok">Stok</label>
           <input type="text" name="Stok" class="form-control" required="required" placeholder="Masukkan Stok Produk">
           <br>
-          <button type="submit" class="btn btn-block bg-purple">
+          <button type="submit" class="btn btn-block bg-dark">
             <i class="fas fa-save"></i>
             Simpan
           </button>
