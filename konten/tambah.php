@@ -43,7 +43,7 @@
                                 value="1"
                                 placeholder="Jumlah..."></div>
                         <div class="form-group col-sm-4">
-                            <input type="text" name="Barcode" class="form-control" placeholder="Barcode..."></div>
+                            <input type="text" name="Barcode" class="form-control" placeholder="Barcode..." required></div>
                         <div class="form-group col-sm-3">
                             <button class="btn btn-block btn-secondary" type="submit">
                                 <i class="fas fa-barcode"></i>
@@ -102,8 +102,8 @@
                     <?php 
                                     }
                                 ?>
-                    <tr>
-                        <td colspan="4">Total</td>
+                    <tr class="text-bold">
+                        <td colspan="4">TOTAL</td>
                         <td align="right"><?= number_format($total_item); ?></td>
                         <td align="right"><?= number_format($total_belanja); ?></td>
                     </tr>

@@ -1,7 +1,29 @@
-<?php
-  
+<?php 
+ // Menghitung Produk
+ $sql_produk="SELECT COUNT(ProdukID) AS jumlah_produk FROM produk";
+ $query_produk=mysqli_query($koneksi,$sql_produk);
+ $produk=mysqli_fetch_array($query_produk);
+ $jumlah_produk=$produk['jumlah_produk'];
+
+ // Menghitung Jumlah Transaksi
+  $sql_jt="SELECT COUNT(PenjualanID) AS jumlah_transaksi FROM penjualan";
+  $query_jt=mysqli_query($koneksi,$sql_jt);
+  $jt=mysqli_fetch_array($query_jt);
+  $jumlah_transaksi=$jt['jumlah_transaksi'];
+
+  // Menghitung Total Transaksi
+  $sql_tt="SELECT SUM(TotalHarga) AS total_transaksi FROM penjualan";
+$query_tt=mysqli_query($koneksi,$sql_tt);
+$tt=mysqli_fetch_array($query_tt);
+$total_transaksi=$tt['total_transaksi'];
+
+// menghitung jumlah pelanggan
+$sql_pelanggan="SELECT COUNT(PelangganID) AS jumlah_pelanggan FROM pelanggan";
+$query_pelanggan=mysqli_query($koneksi,$sql_pelanggan);
+$pelanggan=mysqli_fetch_array($query_pelanggan);
+$jumlah_pelanggan=$pelanggan['jumlah_pelanggan'];
 ?>
- 
+
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -31,13 +53,13 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3></h3>
+                <h3><?= $jumlah_produk ?></h3>
                 <p>Produk</p>
               </div>
               <div class="icon">
                 <i class="fas fa-user"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="index.php?p=produk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -45,13 +67,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3></h3>
+                <h3><?= $jumlah_transaksi ?></h3>
                 <p>Jumlah Transaksi</p>
               </div>
               <div class="icon">
                 <i class="fas fa-exchange-alt"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="index.php?p=histori" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -59,14 +81,14 @@
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
-                <h3>Rp. </h3>
+                <h3>Rp. <?= number_format($total_transaksi) ?> </h3>
 
                 <p>Total Transaksi</p>
               </div>
               <div class="icon">
                 <i class="fas fa-money-bill"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="index.php?p=histori" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -74,14 +96,14 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>Rp. </h3>
+                <h3><?= $jumlah_pelanggan ?></h3>
 
-                <p>Total Tunggakan</p>
+                <p>Jumlah Pelanggan</p>
               </div>
               <div class="icon">
                 <i class="fas fa-exclamation-triangle"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="index.php?p=pelanggan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
