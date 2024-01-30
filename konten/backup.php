@@ -55,7 +55,7 @@
                     ?>
                 </table>
                 <a href="aksi/backup.php">
-                  <button class="btn btn-info btn-block"><i class="fas fa-cog"> Backup Sekarang</i></button>
+                  <button class="btn btn-dark btn-block"><i class="fas fa-cog"> Backup Sekarang</i></button>
                 </a>
             </div>
         </div>

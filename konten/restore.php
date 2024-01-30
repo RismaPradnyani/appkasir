@@ -38,7 +38,7 @@
 
                         <button
                             type="submit"
-                            class="btn btn-info btn-block mt-3"
+                            class="btn btn-dark btn-block mt-3"
                             name="restore"
                             onclick="return confirm('Perhatian !, proses restore akan mengubah total seluruh data yang ada berdasarkan file yang dipilih sebelum restore sangat disarankan untuk melakukan proses backup terlebih dahulu, Apakah anda sudah yakin akan melanjutkan proses ini?')">
                             <i class="fas fa-cog"></i>

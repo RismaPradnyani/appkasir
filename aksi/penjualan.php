@@ -85,6 +85,10 @@ if($_POST){
                 $sql4="INSERT INTO detailpenjualan(DetailID,PenjualanID,ProdukID,JumlahProduk,Harga) VALUES (DEFAULT,$PenjualanID,$ProdukID,$Jumlah,$Harga)";
                 // echo $sql4."<br>";
                 mysqli_query($koneksi,$sql4); 
+
+                // mengurangi nilai stok
+                $sql5="UPDATE produk SET Stok=Stok-$Jumlah WHERE ProdukID=$ProdukID";
+                mysqli_query($koneksi,$sql5);
             }
             // Perintah Mengosongkan Keranjang 
             mysqli_query($koneksi,"DELETE FROM keranjang WHERE id_user=$id_user");
